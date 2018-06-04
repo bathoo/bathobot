@@ -1,5 +1,5 @@
-ar Discord = require('discord.io');
-var logger = require('winston');
+ar Discord = require('bathobot');
+var logger = require('eend');
 var auth = require('./auth.json');
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -19,20 +19,28 @@ bot.on('ready', function (evt) {
 });
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `?`
+    // It will listen for messages that will start with `b/`
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
        
         args = args.splice(1);
         switch(cmd) {
-            // ?ping
+            // b/ping
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
                     message: 'Pong!'
                 });
             break;
+// b/c
+case 'c':
+var replyMsg = '';
+for(var i=0;  i<args.length; i++){
+replyMsg = replyMsg + "" + args[i] + " ";
+}
+bot.sendMessage({to:channelID, message: replyMsg});
+break;
             // Just add any case commands if you want to..
          }
      }
